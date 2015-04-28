@@ -1,0 +1,20 @@
+Installing unit:
+
+1) Install Unity
+
+Testing in Android:
+
+1) Menu File > Build settings... 
+2) Select Android > Press Switch Platforms
+3) Build
+4) Install the apk in the device: $ANDROID_SDK_HOME/platform-tools/adb install -r PACKAGE.apk
+
+Testing in iPhone:
+
+1) Menu File > Build settings...
+2) Select iOS > Press Switch Platform 
+3) Select Symlink Unity libraries
+4) Click Player Settings
+5) Other Settings > Bundle Identifier: com.bestbowling3d.TinyFarmWorld
+6) Build
+7) Open the generated XCode project (Run in a device. It does not work in the simulator)

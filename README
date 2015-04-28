@@ -1,0 +1,19 @@
+READ THIS BEFORE BUILDING OR EDITING THE CODE
+=============================================
+
+Configuring environment
+-----------------------
+
+1) Download Unity 4.2.2 from Unity website (Unity 4.3 had some problems).
+
+Releasing
+--------
+
+- Verify that you have the Ruby language installed in your machine (type in the terminal: "ruby -v")
+- Android
+-- copy the library (sdk-android generated .jar) to revmob-android-wrapper/lib.
+-- open android project (revmob-android-wrapper) into eclipse and relink the lib (since the version has changed): delete the link and create it again.
+- iOS
+-- copy RevMobAds from iOS SDK into unity-sdk/Assets/Plugins/iOS and rename to RevMobAds.a.
+-- copy headers from iOS SDK to unity-sdk/Assets/Plugins/iOS.
+- rake build: run task to generate sample app and package. Do not forget to update update manually the last and the new SDK versions at the top of rakefile.
