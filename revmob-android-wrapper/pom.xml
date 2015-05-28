@@ -21,7 +21,7 @@
             <artifactId>com.revmob</artifactId>
             <version>7.1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/revmob-7.1.0.jar</systemPath>
+            <systemPath>${project.basedir}/lib/revmob.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.unity3d</groupId>

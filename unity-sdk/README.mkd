@@ -1,6 +1,7 @@
 Installing unit:
 
 1) Install Unity
+2) Copy the crack
 
 Testing in Android:
 

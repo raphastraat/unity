@@ -57,9 +57,9 @@ function OnGUI () {
 		if(GUI.Button(new Rect(20, 260, 300, 50), "Open Link")) {
 			if ( revmob.IsDevice() ) {
 				Debug.Log("[RevMob Sample App - JavaScript] Open Link");
-				var adLink = revmob.CreateAdLink();
-				adLink.Open();
-				adLink = null;
+				var link = revmob.CreateLink();
+				link.Open();
+				link = null;
 			}
 		}
 	}
@@ -102,6 +102,47 @@ function UserClickedInTheAd(adUnitType) {
 function UserClosedTheAd(adUnitType) {
 	Debug.Log("[RevMob Sample App - JavaScript] Ad closed");
 }
+
+function VideoLoaded(adUnitType) {
+	Debug.Log("[RevMob Sample App - JavaScript] Video loaded");
+}
+
+function VideoStarted(adUnitType) {
+	Debug.Log("[RevMob Sample App - JavaScript] Video started");
+}
+
+function VideoNotCompletelyLoaded(adUnitType) {
+	Debug.Log("[RevMob Sample App - JavaScript] Video not completely loaded");
+}
+
+function VideoFinished(adUnitType) {
+	Debug.Log("[RevMob Sample App - JavaScript] Video finished");
+}
+
+function RewardedVideoLoaded(adUnitType) {
+	Debug.Log("[RevMob Sample App - JavaScript] Rewarded Video loaded");
+}
+
+function RewardedVideoStarted(adUnitType) {
+	Debug.Log("[RevMob Sample App - JavaScript] Rewarded Video started");
+}
+
+function RewardedVideoNotCompletelyLoaded(adUnitType) {
+	Debug.Log("[RevMob Sample App - JavaScript] Rewarded Video not completely loaded");
+}
+
+function RewardedVideoFinished(adUnitType) {
+	Debug.Log("[RevMob Sample App - JavaScript] Rewarded Video finished");
+}
+
+function RewardedVideoCompleted(adUnitType) {
+	Debug.Log("[RevMob Sample App - JavaScript] Rewarded Video completed");
+}
+
+function RewardedPreRollDisplayed(adUnitType) {
+	Debug.Log("[RevMob Sample App - JavaScript] Rewarded pre roll displayed");
+}
+
 
 function EulaIsShown() {
   Debug.Log("[RevMob Sample App - JavaScript] Eula is Shown");

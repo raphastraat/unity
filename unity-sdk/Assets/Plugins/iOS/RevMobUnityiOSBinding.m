@@ -116,7 +116,6 @@ void RevMobUnityiOSBinding_createFullscreen(const char* placementId) {
     }
     fullscreen.delegate = [revmobDelegates() valueForKey:@"Fullscreen"];    
     fullscreen.supportedInterfaceOrientations = supportedInterfaceOrientations(supportedOrientations());
-
 }
 
 void RevMobUnityiOSBinding_loadFullscreen(const char* placementId) {
@@ -151,6 +150,24 @@ void RevMobUnityiOSBinding_loadFullscreenWithSpecificOrientations(int *orientati
 void RevMobUnityiOSBinding_showFullscreenWithSpecificOrientations(int *orientations) {
     RevMobUnityiOSBinding_loadFullscreenWithSpecificOrientations(orientations);
     [fullscreen showAd];
+}
+
+void RevMobUnityiOSBinding_loadVideo(const char* placementId) {
+    RevMobUnityiOSBinding_createFullscreen(placementId);
+    [fullscreen loadVideo];
+}
+
+void RevMobUnityiOSBinding_showVideo(const char* placementId) {
+    if(fullscreen) [fullscreen showVideo];
+}
+
+void RevMobUnityiOSBinding_loadRewardedVideo(const char* placementId) {
+    RevMobUnityiOSBinding_createFullscreen(placementId);
+    [fullscreen loadRewardedVideo];
+}
+
+void RevMobUnityiOSBinding_showRewardedVideo(const char* placementId) {
+    if(fullscreen) [fullscreen showRewardedVideo];
 }
 
 #pragma mark Banner
@@ -283,6 +300,68 @@ void RevMobUnityiOSBinding_printEnvironmentInformation() {
     if ([adType isEqualToString:@"Fullscreen"]) {
         RevMobUnityiOSBinding_releaseLoadedFullscreen();
     }
+}
+
+
+/******** Video Callbacks *******/
+/**
+ Fired when video is received.
+ */
+- (void)revmobVideoDidLoad{
+    UnitySendMessage(STRCOPY(self.gameObjectName), "VideoLoaded", STRCOPY(adType));
+}
+
+/**
+ Fired when the video is not completely loaded or not even loading.
+ */
+- (void)revmobVideoNotCompletelyLoaded{
+    UnitySendMessage(STRCOPY(self.gameObjectName), "VideoNotCompletelyLoaded", STRCOPY(adType));
+}
+
+/**
+ Fired when the video starts.
+ */
+- (void)revmobVideoDidStart{
+    UnitySendMessage(STRCOPY(self.gameObjectName), "VideoStarted", STRCOPY(adType));
+}
+
+/**
+ Fired when the video finished.
+ */
+- (void)revmobVideoDidFinish{
+    UnitySendMessage(STRCOPY(self.gameObjectName), "VideoFinished", STRCOPY(adType));
+}
+
+
+/////Rewarded Video Listeners/////
+-(void)revmobRewardedVideoDidLoad{
+    UnitySendMessage(STRCOPY(self.gameObjectName), "RewardedVideoLoaded", STRCOPY(adType));
+}
+
+-(void)revmobRewardedVideoNotCompletelyLoaded{
+    UnitySendMessage(STRCOPY(self.gameObjectName), "RewardedVideoNotCompletelyLoaded", STRCOPY(adType));
+}
+
+-(void)revmobRewardedVideoDidStart{
+    UnitySendMessage(STRCOPY(self.gameObjectName), "RewardedVideoStarted", STRCOPY(adType));
+}
+
+/**
+ Fired when the rewarded video finished playing.
+ */
+-(void)revmobRewardedVideoDidFinish{
+    UnitySendMessage(STRCOPY(self.gameObjectName), "RewardedVideoFinished", STRCOPY(adType));
+}
+
+/**
+ Fired when the rewarded video is complete.
+ */
+-(void)revmobRewardedVideoComplete {
+    UnitySendMessage(STRCOPY(self.gameObjectName), "RewardedVideoCompleted", STRCOPY(adType));
+}
+
+-(void)revmobRewardedPreRollDisplayed{
+    UnitySendMessage(STRCOPY(self.gameObjectName), "RewardedPreRollDisplayed", STRCOPY(adType));
 }
 
 # pragma mark Advertiser Callbacks

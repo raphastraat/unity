@@ -1,7 +1,7 @@
 MAIN_PATH = File.dirname(__FILE__)
 
-LAST_VERSION = "7.4.2"
-VERSION = "7.5.0"
+LAST_VERSION = "7.5.0"
+VERSION = "9.0.0"
 UNITY = "/Applications/Unity/Unity.app/Contents/MacOS/Unity"
 UNITY_PACKAGE_FILE = "revmob-unity-sdk-#{VERSION}.unitypackage"
 PACKAGE_FILE = "revmob-unity-sdk-#{VERSION}.zip"
@@ -59,7 +59,7 @@ task :update_sample_app do
   puts colorize("Unity Sample App updated", :blue)
 end
 
-task :build => [:clean, :build_android_wrapper, :update_sample_app] do
+task :build => [:clean, :build_android_wrapper] do
   sh "cd #{SDK_PATH}"
   begin
     sh "mv #{SDK_PATH}/Assets/Plugins/Android/AndroidManifest.xml #{SDK_PATH}/Assets/Plugins/Android/AndroidManifest.xml.example"
@@ -69,7 +69,9 @@ task :build => [:clean, :build_android_wrapper, :update_sample_app] do
     puts colorize("File created: #{UNITY_PACKAGE_FILE}", :blue)
     sh "mkdir #{TMP_DIR}"
     sh "mv #{UNITY_PACKAGE_FILE} #{TMP_DIR}/"
-    sh "cp -r #{SAMPLE_APP} #{TMP_DIR}"
+    sh "cp -r #{SDK_PATH} #{TMP_DIR}"
+    # Renaming unity-sdk folder to revmob-sample-app
+    sh "mv #{TMP_DIR}/unity-sdk #{TMP_DIR}/revmob-sample-app"
     sh "rm -f #{TMP_DIR}/*.meta"
     sh "zip -r #{PACKAGE_FILE} #{TMP_DIR}"
     sh "rm -rf #{TMP_DIR}"

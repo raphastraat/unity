@@ -8,7 +8,7 @@
 @interface RevMobFullscreen : NSObject
 
 /**
- The delegate setted on this property is called when ad related events happend, see
+ The delegate set on this property is called when ad related events happend, see
  RevMobAdsDelegate for mode details.
  */
 @property(nonatomic, assign) id<RevMobAdsDelegate> delegate;
@@ -28,6 +28,11 @@
  Use this method to load the video ad;
  */
 -(void) loadVideo;
+
+/**
+ Use this method to load the rewarded ad;
+ */
+-(void) loadRewardedVideo;
 
 /**
  Use this method to load the ad.
@@ -83,6 +88,10 @@
  Use this method to show the video ad.
  */
 - (void) showVideo;
+
+/** Use this method to show the rewarded video ad.
+ */
+-(void) showRewardedVideo;
 
 /**
  Use this method to hide the ad.

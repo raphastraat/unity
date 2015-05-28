@@ -68,9 +68,9 @@ public class UnityRevMob {
 				}
 			}
 
-			public void onRevMobAdDismiss() {
+			public void onRevMobAdDismissed() {
 				if (unityListener != null) {
-					unityListener.onRevMobAdDismiss();
+					unityListener.onRevMobAdDismissed();
 				}
 			}
 
@@ -92,30 +92,57 @@ public class UnityRevMob {
 				}	
 			}
 			
-			public void onRevMobVideoCompleted() {
+			public void onRevMobVideoFinished() {
 				if (unityListener != null) {
-					unityListener.onRevMobVideoCompleted();
+					unityListener.onRevMobVideoFinished();
 				}
 			}
-			
-			public void onRevMobVideoDismiss() {
-				if (unityListener != null) {
-					unityListener.onRevMobVideoDismiss();
-				}
-			}
+
 			public void onRevMobVideoNotCompletelyLoaded() {
 				if (unityListener != null) {
 					unityListener.onRevMobVideoNotCompletelyLoaded();
 				}
 			}
-			public void onRevMobVideoReceived() {
+			public void onRevMobVideoLoaded() {
 				if (unityListener != null) {
-					unityListener.onRevMobVideoReceived();
+					unityListener.onRevMobVideoLoaded();
 				}
 			}
 			public void onRevMobVideoStarted() {
 				if (unityListener != null) {
 					unityListener.onRevMobVideoStarted();
+				}
+			}
+
+			public void onRevMobRewardedVideoFinished() {
+				if (unityListener != null) {
+					unityListener.onRevMobRewardedVideoFinished();
+				}
+			}
+
+			public void onRevMobRewardedVideoNotCompletelyLoaded() {
+				if (unityListener != null) {
+					unityListener.onRevMobRewardedVideoNotCompletelyLoaded();
+				}
+			}
+			public void onRevMobRewardedVideoLoaded() {
+				if (unityListener != null) {
+					unityListener.onRevMobRewardedVideoLoaded();
+				}
+			}
+			public void onRevMobRewardedVideoStarted() {
+				if (unityListener != null) {
+					unityListener.onRevMobRewardedVideoStarted();
+				}
+			}
+			public void onRevMobRewardedVideoCompleted() {
+				if (unityListener != null) {
+					unityListener.onRevMobRewardedVideoCompleted();
+				}
+			}
+			public void onRevMobRewardedPreRollDisplayed() {
+				if (unityListener != null) {
+					unityListener.onRevMobRewardedPreRollDisplayed();
 				}
 			}
 		};
@@ -131,33 +158,39 @@ public class UnityRevMob {
 	public RevMobFullscreen createFullscreen(final Activity activity, String placementId, final RevMobAdsUnityListener unityListener) {
 		return session.createFullscreen(activity, placementId, unityListenerToAndroidListener(unityListener));
 	}
-
-	public RevMobLink openAdLink(final Activity activity, String placementId, final RevMobAdsUnityListener unityListener) {
-		RevMobLink ad = createAdLink(activity, placementId, unityListener);
+	
+	public RevMobFullscreen createVideo(final Activity activity, String placementId, final RevMobAdsUnityListener unityListener) {
+		return session.createVideo(activity, placementId, unityListenerToAndroidListener(unityListener));
+	}
+	
+	public RevMobFullscreen createRewardedVideo(final Activity activity, String placementId, final RevMobAdsUnityListener unityListener) {
+		return session.createRewardedVideo(activity, placementId, unityListenerToAndroidListener(unityListener));
+	}
+	
+	public RevMobLink openLink(final Activity activity, String placementId, final RevMobAdsUnityListener unityListener) {
+		RevMobLink ad = session.createLink(activity, placementId, unityListener);
 		ad.open();
 		return ad;
 	}
 
-	public RevMobLink createAdLink(final Activity activity, String placementId, final RevMobAdsUnityListener unityListener) {
-		return session.createAdLink(activity, placementId, unityListenerToAndroidListener(unityListener));
+	public RevMobLink createLink(final Activity activity, String placementId, final RevMobAdsUnityListener unityListener) {
+		return session.createLink(activity, placementId, unityListenerToAndroidListener(unityListener));
 	}
 
 	public void createBanner(final Activity activity, final RevMobAdsUnityListener unityListener, int position, int x, int y, int w, int h) {
-		releaseBanner();
-		
-  	if (x < 0) {
-  		x = 0;
-  	}
-  	if (y < 0) { 
-  		y = 0;
-  	}
-    if (w == 0) {//(w < RevMobBanner.DEFAULT_WIDTH_IN_DIP) {
-      w = activity.getWindowManager().getDefaultDisplay().getWidth();
-    }
-    if (h == 0) { //(h < RevMobBanner.DEFAULT_HEIGHT_IN_DIP) {
-      h = w * RevMobBanner.DEFAULT_HEIGHT_IN_DIP / RevMobBanner.DEFAULT_WIDTH_IN_DIP;
-    }
-		
+		releaseBanner();		
+	  	if (x < 0) {
+	  		x = 0;
+	  	}
+	  	if (y < 0) { 
+	  		y = 0;
+	  	}
+	    if (w == 0) {//(w < RevMobBanner.DEFAULT_WIDTH_IN_DIP) {
+	      w = activity.getWindowManager().getDefaultDisplay().getWidth();
+	    }
+	    if (h == 0) { //(h < RevMobBanner.DEFAULT_HEIGHT_IN_DIP) {
+	      h = w * RevMobBanner.DEFAULT_HEIGHT_IN_DIP / RevMobBanner.DEFAULT_WIDTH_IN_DIP;
+	    }		
 		int gravity = (position == 0) ? Gravity.BOTTOM : Gravity.TOP;
 		session.preloadBanner(activity, gravity, x, y, w, h, null, unityListener);
 		bannerLoaded = true;

@@ -23,11 +23,11 @@ public class RevMobSampleAppCSharp : MonoBehaviour, IRevMobListener {
 	};
 
 	private RevMob revmob;
-	private RevMobFullscreen fullscreen;
+	private RevMobFullscreen fullscreen, video, rewardedVideo;
 	private RevMobPopup popup;
-	private RevMobLink adLink;
+	private RevMobLink link;
 	private RevMobBanner banner;
-  private RevMobBanner loadedBanner;
+  	private RevMobBanner loadedBanner;
 
 	void OnApplicationFocus() {
 	}
@@ -43,8 +43,9 @@ public class RevMobSampleAppCSharp : MonoBehaviour, IRevMobListener {
 		if (revmob != null) {
 			CreateEnvButtons();
 			CreateFullscreenButtons();
+			CreateVideoButtons();
 			CreatePopupButtons();
-			CreateAdLinkButtons();
+			CreateLinkButtons();
 			CreateBannerButtons();
 			PreLoadBanner();
 		}
@@ -89,6 +90,29 @@ public class RevMobSampleAppCSharp : MonoBehaviour, IRevMobListener {
 		}
 	}
 
+	void CreateVideoButtons() {
+		CreateButton("Load Video", () => {
+			video = revmob.CreateVideo();
+			return; 
+		});
+		if(video != null){
+			if ( GUI.Button(new Rect(X_POSITION_REFERENCE + BUTTON_WIDTH + PADDING, i * Y_POSITION_REFERENCE, BUTTON_WIDTH, BUTTON_HEIGHT), "Show Video") ) {
+				video.ShowVideo();
+				return;
+			}			
+		} 
+		CreateButton("Load Rewarded Video", () => {
+			rewardedVideo = revmob.CreateRewardedVideo();
+			return; 
+		});
+		if(rewardedVideo != null) {	
+			if ( GUI.Button(new Rect(X_POSITION_REFERENCE + BUTTON_WIDTH + PADDING, i * Y_POSITION_REFERENCE, BUTTON_WIDTH, BUTTON_HEIGHT), "Show Rewarded Video") ) {
+				rewardedVideo.ShowRewardedVideo();
+				return;
+			}
+		}
+	}
+
 	void CreatePopupButtons() {
 		CreateButton("Show Popup", () => { revmob.ShowPopup(); return; });
 		i++;
@@ -106,20 +130,20 @@ public class RevMobSampleAppCSharp : MonoBehaviour, IRevMobListener {
 		}
 	}
 
-	void CreateAdLinkButtons() {
-		CreateButton("Open Ad Link", () => { revmob.OpenAdLink(); return; });
+	void CreateLinkButtons() {
+		CreateButton("Open Ad Link", () => { revmob.OpenLink(); return; });
 		i++;
-		if( GUI.Button(new Rect(X_POSITION_REFERENCE, i * Y_POSITION_REFERENCE, BUTTON_WIDTH, BUTTON_HEIGHT), "Create AdLink") ) {
+		if( GUI.Button(new Rect(X_POSITION_REFERENCE, i * Y_POSITION_REFERENCE, BUTTON_WIDTH, BUTTON_HEIGHT), "Create Ad Link") ) {
 			if (revmob == null)
 				return;
-			adLink = revmob.CreateAdLink();
+			link = revmob.CreateLink();
 			return;
 		}
 
-		if (adLink != null) {
+		if (link != null) {
 			if ( GUI.Button(new Rect(X_POSITION_REFERENCE + BUTTON_WIDTH + PADDING, i * Y_POSITION_REFERENCE, BUTTON_WIDTH, BUTTON_HEIGHT), "Open Link") ) {
-				adLink.Open();
-				adLink = null;
+				link.Open();
+				link = null;
 				return;
 			}
 		}
@@ -241,6 +265,39 @@ public class RevMobSampleAppCSharp : MonoBehaviour, IRevMobListener {
 	public void UserClosedTheAd(string revMobAdType) {
 		Debug.Log(">>> AdClosed: " + revMobAdType);
 	}
+
+	public void VideoLoaded() {
+		Debug.Log(">>> VideoLoaded");
+	}
+	public void VideoNotCompletelyLoaded() {
+		Debug.Log(">>> VideoNotCompletelyLoaded");
+	}
+	public void VideoStarted() {
+		Debug.Log(">>> VideoStarted");
+	}
+	public void VideoFinished() {
+		Debug.Log(">>> VideoFinished");
+	}
+
+	public void RewardedVideoLoaded() {
+		Debug.Log(">>> RewardedVideoLoaded");
+	}
+	public void RewardedVideoNotCompletelyLoaded() {
+		Debug.Log(">>> RewardedVideoNotCompletelyLoaded");
+	}
+	public void RewardedVideoStarted() {
+		Debug.Log(">>> RewardedVideoStarted");
+	}
+	public void RewardedVideoFinished() {
+		Debug.Log(">>> RewardedVideoFinished");
+	}
+	public void RewardedVideoCompleted() {
+		Debug.Log(">>> RewardedVideoCompleted");
+	}
+	public void RewardedPreRollDisplayed() {
+		Debug.Log(">>> RewardedPreRollDisplayed");
+	}
+
 
 	public void InstallDidReceive(string message) {}
 

@@ -7,6 +7,9 @@ using System.Collections.Generic;
 public class RevMobIosFullscreen : RevMobFullscreen {
 
 	[DllImport("__Internal")]
+	private static extern void RevMobUnityiOSBinding_createFullscreen(string placementId);
+
+	[DllImport("__Internal")]
 	private static extern void RevMobUnityiOSBinding_loadFullscreen(string placementId);
 
 	[DllImport("__Internal")]
@@ -21,17 +24,29 @@ public class RevMobIosFullscreen : RevMobFullscreen {
 	[DllImport("__Internal")]
 	private static extern void RevMobUnityiOSBinding_releaseLoadedFullscreen();
 
+	[DllImport("__Internal")]
+	private static extern void RevMobUnityiOSBinding_showVideo(string placementId);
 
-	public RevMobIosFullscreen(ScreenOrientation[] orientations) {
-		RevMobUnityiOSBinding_loadFullscreenWithSpecificOrientations(orientations);
-	}
+	[DllImport("__Internal")]
+	private static extern void RevMobUnityiOSBinding_showRewardedVideo(string placementId);
+
+	[DllImport("__Internal")]
+	private static extern void RevMobUnityiOSBinding_loadVideo(string placementId);
+
+	[DllImport("__Internal")]
+	private static extern void RevMobUnityiOSBinding_loadRewardedVideo(string placementId);
+
 
 	public RevMobIosFullscreen() {
-		RevMobUnityiOSBinding_loadFullscreen(null);
+		RevMobUnityiOSBinding_createFullscreen(null);
 	}
 
 	public RevMobIosFullscreen(string placementId) {
-		RevMobUnityiOSBinding_loadFullscreen(placementId);
+		RevMobUnityiOSBinding_createFullscreen(placementId);
+	}
+
+	public void LoadFullscreen(){
+		RevMobUnityiOSBinding_loadFullscreen(null);
 	}
 
 	public override void Show() {
@@ -45,6 +60,22 @@ public class RevMobIosFullscreen : RevMobFullscreen {
 	public override void Release() {
 		this.Hide();
 		RevMobUnityiOSBinding_releaseLoadedFullscreen();
+	}
+
+	public void LoadVideo(){
+		RevMobUnityiOSBinding_loadVideo(null);
+	}
+
+	public void LoadRewardedVideo(){
+		RevMobUnityiOSBinding_loadRewardedVideo(null);
+	}
+
+	public override void ShowVideo() {
+		RevMobUnityiOSBinding_showVideo(null);
+	}
+
+	public override void ShowRewardedVideo() {
+		RevMobUnityiOSBinding_showRewardedVideo(null);
 	}
 }
 #endif

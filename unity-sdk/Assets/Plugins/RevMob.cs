@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 
 public abstract class RevMob {
-	protected static readonly string REVMOB_VERSION = "7.5.0";
+	protected static readonly string REVMOB_VERSION = "9.0.0";
 	protected string gameObjectName;
 
 	public enum Test {
@@ -27,6 +27,8 @@ public abstract class RevMob {
 
 	public abstract RevMobFullscreen ShowFullscreen(string placementId);
 	public abstract RevMobFullscreen CreateFullscreen(string placementId);
+	public abstract RevMobFullscreen CreateVideo(string placementId);
+	public abstract RevMobFullscreen CreateRewardedVideo(string placementId);
 #if UNITY_ANDROID
 	public abstract RevMobBanner CreateBanner(RevMob.Position position, int x, int y, int w, int h);
 	public abstract void ShowBanner(RevMob.Position position, int x, int y, int w, int h);
@@ -34,8 +36,8 @@ public abstract class RevMob {
 #elif UNITY_IPHONE
 	public abstract RevMobBanner CreateBanner(float x, float y, float width, float height, string placementId, ScreenOrientation[] orientations);
 #endif
-	public abstract RevMobLink OpenAdLink(string placementId);
-	public abstract RevMobLink CreateAdLink(string placementId);
+	public abstract RevMobLink OpenLink(string placementId);
+	public abstract RevMobLink CreateLink(string placementId);
 
 	public abstract RevMobPopup ShowPopup(string placementId);
 	public abstract RevMobPopup CreatePopup(string placementId);
@@ -69,6 +71,14 @@ public abstract class RevMob {
 		return this.CreateFullscreen(null);
 	}
 
+	public RevMobFullscreen CreateVideo() {
+		return this.CreateVideo(null);
+	}
+
+	public RevMobFullscreen CreateRewardedVideo() {
+		return this.CreateRewardedVideo(null);
+	}
+
 #if UNITY_ANDROID
 	public RevMobBanner CreateBanner() {
 		return this.CreateBanner(Position.BOTTOM, 0, 0, 0, 0);
@@ -99,12 +109,12 @@ public abstract class RevMob {
 	}
 #endif
 
-	public RevMobLink OpenAdLink() {
-		return this.OpenAdLink(null);
+	public RevMobLink OpenLink() {
+		return this.OpenLink(null);
 	}
 
-	public RevMobLink CreateAdLink() {
-		return this.CreateAdLink(null);
+	public RevMobLink CreateLink() {
+		return this.CreateLink(null);
 	}
 
 	public RevMobPopup ShowPopup() {

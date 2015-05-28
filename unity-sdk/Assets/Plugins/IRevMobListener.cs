@@ -16,6 +16,26 @@ public interface IRevMobListener
 
 	void UserClosedTheAd(string revMobAdType);
 
+	void VideoLoaded();
+
+	void VideoNotCompletelyLoaded();
+
+	void VideoStarted();
+
+	void VideoFinished();	
+
+	void RewardedVideoLoaded();
+
+	void RewardedVideoNotCompletelyLoaded();
+
+	void RewardedVideoStarted();
+
+	void RewardedVideoFinished();	
+
+	void RewardedVideoCompleted();	
+
+	void RewardedPreRollDisplayed();	
+
 	void InstallDidReceive(string message);
 
 	void InstallDidFail(string message);

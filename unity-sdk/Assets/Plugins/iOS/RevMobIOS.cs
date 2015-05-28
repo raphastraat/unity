@@ -66,7 +66,21 @@ public class RevMobIos : RevMob {
 	}
 
 	public override RevMobFullscreen CreateFullscreen(string placementId) {
-		return (IsDevice()) ? new RevMobIosFullscreen(placementId) : null;
+		RevMobIosFullscreen fs = (IsDevice()) ? new RevMobIosFullscreen(placementId) : null;
+		fs.LoadFullscreen();
+		return fs;
+	}
+
+	public override RevMobFullscreen CreateVideo(string placementId) {
+		RevMobIosFullscreen fs = (IsDevice()) ? new RevMobIosFullscreen(placementId) : null;
+		fs.LoadVideo();
+		return fs;
+	}
+
+	public override RevMobFullscreen CreateRewardedVideo(string placementId) {
+		RevMobIosFullscreen fs = (IsDevice()) ? new RevMobIosFullscreen(placementId) : null;
+		fs.LoadRewardedVideo();
+		return fs;
 	}
 
 	public RevMobFullscreen ShowFullscreen(ScreenOrientation[] orientations) {
@@ -80,12 +94,12 @@ public class RevMobIos : RevMob {
 	}
 
 
-	public override RevMobLink OpenAdLink(string placementId) {
+	public override RevMobLink OpenLink(string placementId) {
 		RevMobUnityiOSBinding_openAdLink(placementId);
 		return null;
 	}
 
-	public override RevMobLink CreateAdLink(string placementId)	{
+	public override RevMobLink CreateLink(string placementId)	{
 		return (IsDevice()) ? new RevMobIosLink(placementId) : null;
 	}
 

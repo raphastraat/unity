@@ -3,7 +3,7 @@ package com.revmob.unity;
 import com.revmob.RevMobAdsListener;
 import com.unity3d.player.UnityPlayer;
 
-public class RevMobAdsUnityListener implements RevMobAdsListener {
+public class RevMobAdsUnityListener extends RevMobAdsListener {
     private static final String DEFAULT_GAME_OBJECT_NAME = "GameObject";
     private String gameObjectName;
     private String adType;
@@ -37,7 +37,7 @@ public class RevMobAdsUnityListener implements RevMobAdsListener {
         UnityPlayer.UnitySendMessage(gameObjectName, "UserClickedInTheAd", adType);
     }
 
-    public void onRevMobAdDismiss() {
+    public void onRevMobAdDismissed() {
     	UnityPlayer.UnitySendMessage(gameObjectName, "UserClosedTheAd", adType);
     }
 
@@ -53,24 +53,44 @@ public class RevMobAdsUnityListener implements RevMobAdsListener {
 		UnityPlayer.UnitySendMessage(gameObjectName, "EulaRejected", adType);	
 	}
 	
-	public void onRevMobVideoCompleted() {
-		UnityPlayer.UnitySendMessage(gameObjectName, "VideoCompleted", adType);	
-	}
-	
-	public void onRevMobVideoDismiss() {
-		UnityPlayer.UnitySendMessage(gameObjectName, "VideoDismiss", adType);	
+	public void onRevMobVideoFinished() {
+		UnityPlayer.UnitySendMessage(gameObjectName, "VideoLoaded", adType);	
 	}
 	
 	public void onRevMobVideoNotCompletelyLoaded() {
 		UnityPlayer.UnitySendMessage(gameObjectName, "VideoNotCompletelyLoaded", adType);	
 	}
 	
-	public void onRevMobVideoReceived() {
+	public void onRevMobVideoLoaded() {
 		UnityPlayer.UnitySendMessage(gameObjectName, "VideoReceived", adType);	
 	}
 	
 	public void onRevMobVideoStarted() {
 		UnityPlayer.UnitySendMessage(gameObjectName, "VideoStarted", adType);	
+	}
+
+	public void onRevMobRewardedVideoFinished() {
+		UnityPlayer.UnitySendMessage(gameObjectName, "RewardedVideoLoaded", adType);	
+	}
+	
+	public void onRevMobRewardedVideoNotCompletelyLoaded() {
+		UnityPlayer.UnitySendMessage(gameObjectName, "RewardedVideoNotCompletelyLoaded", adType);	
+	}
+	
+	public void onRevMobRewardedVideoLoaded() {
+		UnityPlayer.UnitySendMessage(gameObjectName, "RewardedVideoReceived", adType);	
+	}
+	
+	public void onRevMobRewardedVideoStarted() {
+		UnityPlayer.UnitySendMessage(gameObjectName, "RewardedVideoStarted", adType);	
+	}
+
+	public void onRevMobRewardedVideoCompleted() {
+		UnityPlayer.UnitySendMessage(gameObjectName, "RewardedVideoCompleted", adType);	
+	}
+
+	public void onRevMobRewardedPreRollDisplayed() {
+		UnityPlayer.UnitySendMessage(gameObjectName, "RewardedPreRollDisplayed", adType);	
 	}
 
 }

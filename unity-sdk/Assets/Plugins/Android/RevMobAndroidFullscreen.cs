@@ -18,5 +18,13 @@ public class RevMobAndroidFullscreen : RevMobFullscreen {
 		javaObject.Call("hide");
 	}
 
+    public override void ShowVideo(){
+    	javaObject.Call("showVideo");
+    }
+
+    public override void ShowRewardedVideo(){
+    	javaObject.Call("showRewardedVideo");
+    }
+
 }
 #endif

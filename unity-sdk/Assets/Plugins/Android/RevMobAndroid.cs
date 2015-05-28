@@ -42,8 +42,6 @@ public class RevMobAndroid : RevMob {
 		return new AndroidJavaObject("com.revmob.unity.RevMobAdsUnityListener", gameObjectName, adUnityType);
 	}
 
-
-
 	public override void PrintEnvironmentInformation() {
 		session.Call("printEnvironmentInformation", CurrentActivity());
 	}
@@ -56,8 +54,6 @@ public class RevMobAndroid : RevMob {
 		session.Call("setTimeoutInSeconds", timeout);
 	}
 
-
-
 	public override RevMobFullscreen ShowFullscreen(string placementId) {
 		return new RevMobAndroidFullscreen(this.adUnitWrapperCall("showFullscreen", placementId, "Fullscreen"));
 	}
@@ -68,6 +64,17 @@ public class RevMobAndroid : RevMob {
 		return new RevMobAndroidFullscreen(javaObject);
 	}
 
+	public override RevMobFullscreen CreateVideo(string placementId) {
+		if (!IsDevice ()) return null;
+		AndroidJavaObject javaObject = this.adUnitWrapperCall("createVideo", placementId, "Fullscreen");
+		return new RevMobAndroidFullscreen(javaObject);
+	}
+
+	public override RevMobFullscreen CreateRewardedVideo(string placementId) {
+		if (!IsDevice ()) return null;
+		AndroidJavaObject javaObject = this.adUnitWrapperCall("createRewardedVideo", placementId, "Fullscreen");
+		return new RevMobAndroidFullscreen(javaObject);
+	}
 
 	public override RevMobBanner CreateBanner(RevMob.Position position, int x, int y, int w, int h) {
 		return (IsDevice()) ? new RevMobAndroidBanner(CurrentActivity(), CreateRevMobListener(this.gameObjectName, "Banner"), position, x, y, w, h, session) : null;
@@ -82,15 +89,13 @@ public class RevMobAndroid : RevMob {
 		this.session.Call("hideBanner", CurrentActivity());
 	}
 
-
-
-	public override RevMobLink OpenAdLink(string placementId) {
-		return new RevMobAndroidLink(this.adUnitWrapperCall("openAdLink", placementId, "Link"));
+	public override RevMobLink OpenLink(string placementId) {
+		return new RevMobAndroidLink(this.adUnitWrapperCall("openLink", placementId, "Link"));
 	}
 
-	public override RevMobLink CreateAdLink(string placementId)	{
+	public override RevMobLink CreateLink(string placementId)	{
 		if (!IsDevice ()) return null;
-		AndroidJavaObject javaObject = this.adUnitWrapperCall("createAdLink", placementId, "Link");
+		AndroidJavaObject javaObject = this.adUnitWrapperCall("createLink", placementId, "Link");
 		return new RevMobAndroidLink(javaObject);
 	}
 
