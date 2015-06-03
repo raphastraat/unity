@@ -1,7 +1,7 @@
 MAIN_PATH = File.dirname(__FILE__)
 
-LAST_VERSION = "7.5.0"
-VERSION = "9.0.0"
+LAST_VERSION = "9.0.0"
+VERSION = "9.0.1"
 UNITY = "/Applications/Unity/Unity.app/Contents/MacOS/Unity"
 UNITY_PACKAGE_FILE = "revmob-unity-sdk-#{VERSION}.unitypackage"
 PACKAGE_FILE = "revmob-unity-sdk-#{VERSION}.zip"

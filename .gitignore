@@ -20,5 +20,3 @@ revmob-sample-app/obj
 *.unitypackage
 R.java
 build_error.log
-*.mobileprovision
-*.p12
