@@ -76,6 +76,16 @@ public class RevMobAndroid : RevMob {
 		return new RevMobAndroidFullscreen(javaObject);
 	}
 
+	public override RevMobLink OpenButton(string placementId){
+		return (IsDevice()) ? new RevMobAndroidLink(this.adUnitWrapperCall("openLink", placementId, "Link")) : null;
+	}
+
+	public override RevMobLink CreateButton(string placementId){
+		if (!IsDevice ()) return null;
+		AndroidJavaObject javaObject = this.adUnitWrapperCall("createLink", placementId, "Link");
+		return new RevMobAndroidLink(javaObject);
+	}
+
 	public override RevMobBanner CreateBanner(RevMob.Position position, int x, int y, int w, int h) {
 		return (IsDevice()) ? new RevMobAndroidBanner(CurrentActivity(), CreateRevMobListener(this.gameObjectName, "Banner"), position, x, y, w, h, session) : null;
 	}

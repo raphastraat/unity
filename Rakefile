@@ -1,7 +1,7 @@
 MAIN_PATH = File.dirname(__FILE__)
 
-LAST_VERSION = "9.0.0"
-VERSION = "9.0.1"
+LAST_VERSION = "9.0.3"
+VERSION = "9.0.4"
 UNITY = "/Applications/Unity/Unity.app/Contents/MacOS/Unity"
 UNITY_PACKAGE_FILE = "revmob-unity-sdk-#{VERSION}.unitypackage"
 PACKAGE_FILE = "revmob-unity-sdk-#{VERSION}.zip"
@@ -89,7 +89,7 @@ end
 task :upload => [:build] do
   filename = PACKAGE_FILE
   puts colorize("Uploading to S3", :blue)
-  require 'aws-sdk'
+  require 'aws-sdk-v1'
   AWS.config(access_key_id: ENV["AWS_ACCESS_KEY_ID"], secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"], region: ENV["AWS_REGION"])
   bucket = AWS.s3.buckets["sdks"]
   if not bucket.exists? then

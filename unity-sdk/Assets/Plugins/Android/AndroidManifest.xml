@@ -21,7 +21,7 @@
     <activity android:name="com.unity3d.player.VideoPlayer" android:label="@string/app_name" android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
     </activity>
     <activity
-        android:name="com.revmob.ads.fullscreen.FullscreenActivity"
+        android:name="com.revmob.FullscreenActivity"
         android:configChanges="keyboardHidden|orientation" >
     </activity>
   </application>

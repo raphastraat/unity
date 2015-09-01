@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.revmob</groupId>
             <artifactId>com.revmob</artifactId>
-            <version>7.1.0</version>
+            <version>9.0.4</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/revmob.jar</systemPath>
         </dependency>

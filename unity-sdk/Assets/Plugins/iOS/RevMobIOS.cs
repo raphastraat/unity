@@ -88,12 +88,19 @@ public class RevMobIos : RevMob {
 		return null;
 	}
 
-
 	public override RevMobBanner CreateBanner(float x, float y, float width, float height, string placementId, ScreenOrientation[] orientations) {
 		return (IsDevice()) ? new RevMobIosBanner(placementId, orientations, x, y, width, height) : null;
 	}
 
+	public override RevMobLink OpenButton(string placementId){
+		RevMobUnityiOSBinding_openAdLink(placementId);
+		return null;
+	}
 
+	public override RevMobLink CreateButton(string placementId){
+		return (IsDevice()) ? new RevMobIosLink(placementId) : null;
+	}
+		
 	public override RevMobLink OpenLink(string placementId) {
 		RevMobUnityiOSBinding_openAdLink(placementId);
 		return null;
@@ -102,8 +109,6 @@ public class RevMobIos : RevMob {
 	public override RevMobLink CreateLink(string placementId)	{
 		return (IsDevice()) ? new RevMobIosLink(placementId) : null;
 	}
-
-
 
 	public override RevMobPopup ShowPopup(string placementId) {
 		RevMobUnityiOSBinding_showPopup(placementId);

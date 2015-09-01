@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 
 public abstract class RevMob {
-	protected static readonly string REVMOB_VERSION = "9.0.0";
+	protected static readonly string REVMOB_VERSION = "9.0.4";
 	protected string gameObjectName;
 
 	public enum Test {
@@ -29,6 +29,8 @@ public abstract class RevMob {
 	public abstract RevMobFullscreen CreateFullscreen(string placementId);
 	public abstract RevMobFullscreen CreateVideo(string placementId);
 	public abstract RevMobFullscreen CreateRewardedVideo(string placementId);
+	public abstract RevMobLink OpenButton(string placementId);
+	public abstract RevMobLink CreateButton(string placementId);
 #if UNITY_ANDROID
 	public abstract RevMobBanner CreateBanner(RevMob.Position position, int x, int y, int w, int h);
 	public abstract void ShowBanner(RevMob.Position position, int x, int y, int w, int h);
@@ -77,6 +79,14 @@ public abstract class RevMob {
 
 	public RevMobFullscreen CreateRewardedVideo() {
 		return this.CreateRewardedVideo(null);
+	}
+
+	public RevMobLink OpenButton() {
+		return this.OpenButton(null);
+	}
+
+	public RevMobLink CreateButton() {
+		return this.CreateButton(null);
 	}
 
 #if UNITY_ANDROID

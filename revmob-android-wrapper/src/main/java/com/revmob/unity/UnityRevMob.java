@@ -7,7 +7,7 @@ import com.revmob.RevMob;
 import com.revmob.RevMobAdsListener;
 import com.revmob.RevMobTestingMode;
 import com.revmob.ads.banner.RevMobBanner;
-import com.revmob.ads.fullscreen.RevMobFullscreen;
+import com.revmob.ads.interstitial.RevMobFullscreen;
 import com.revmob.ads.link.RevMobLink;
 import com.revmob.ads.popup.RevMobPopup;
 import com.revmob.client.RevMobClient;

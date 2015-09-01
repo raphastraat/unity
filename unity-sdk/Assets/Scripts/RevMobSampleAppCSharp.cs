@@ -26,6 +26,7 @@ public class RevMobSampleAppCSharp : MonoBehaviour, IRevMobListener {
 	private RevMobFullscreen fullscreen, video, rewardedVideo;
 	private RevMobPopup popup;
 	private RevMobLink link;
+	private RevMobLink button;
 	private RevMobBanner banner;
   	private RevMobBanner loadedBanner;
 
@@ -44,10 +45,11 @@ public class RevMobSampleAppCSharp : MonoBehaviour, IRevMobListener {
 			CreateEnvButtons();
 			CreateFullscreenButtons();
 			CreateVideoButtons();
-			CreatePopupButtons();
-			CreateLinkButtons();
 			CreateBannerButtons();
 			PreLoadBanner();
+			CreateButtonButtons();
+			CreateLinkButtons();
+			CreatePopupButtons();
 		}
 
 		GUI.EndScrollView ();
@@ -144,6 +146,25 @@ public class RevMobSampleAppCSharp : MonoBehaviour, IRevMobListener {
 			if ( GUI.Button(new Rect(X_POSITION_REFERENCE + BUTTON_WIDTH + PADDING, i * Y_POSITION_REFERENCE, BUTTON_WIDTH, BUTTON_HEIGHT), "Open Link") ) {
 				link.Open();
 				link = null;
+				return;
+			}
+		}
+	}
+
+	void CreateButtonButtons() {
+		CreateButton("Open Button", () => { revmob.OpenButton(); return; });
+		i++;
+		if( GUI.Button(new Rect(X_POSITION_REFERENCE, i * Y_POSITION_REFERENCE, BUTTON_WIDTH, BUTTON_HEIGHT), "Pre-Load Button Ad") ) {
+			if (revmob == null)
+				return;
+			button = revmob.CreateButton();
+			return;
+		}
+
+		if (button != null) {
+			if ( GUI.Button(new Rect(X_POSITION_REFERENCE + BUTTON_WIDTH + PADDING, i * Y_POSITION_REFERENCE, BUTTON_WIDTH, BUTTON_HEIGHT), "Open Pre-Loaded Button") ) {
+				button.Open();
+				button = null;
 				return;
 			}
 		}
